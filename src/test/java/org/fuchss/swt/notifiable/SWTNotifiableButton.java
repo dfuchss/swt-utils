@@ -1,9 +1,8 @@
-package home.fox.swt.notifiable;
+package org.fuchss.swt.notifiable;
 
 import org.eclipse.swt.widgets.Button;
-
-import home.fox.swt.notifiable.SWTNotifiable;
-import home.fox.swt.notifiable.SWTNotifiableShell;
+import org.fuchss.swt.notifiable.SWTNotifiable;
+import org.fuchss.swt.notifiable.SWTNotifiableShell;
 
 public class SWTNotifiableButton<INFO> extends Button implements SWTNotifiable<INFO> {
 

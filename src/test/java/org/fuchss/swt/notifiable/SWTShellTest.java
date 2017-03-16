@@ -1,8 +1,9 @@
-package home.fox.swt.notifiable;
+package org.fuchss.swt.notifiable;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
+import org.fuchss.swt.notifiable.SWTNotifiableShell;
 
 public class SWTShellTest extends SWTNotifiableShell<String> {
     protected SWTNotifiableButton<String> btnTest;

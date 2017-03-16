@@ -1,9 +1,10 @@
-package home.fox.swt.callable;
+package org.fuchss.swt.callable;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.fuchss.swt.callable.SWTCallableShell;
 
 public class SWTShellTest extends SWTCallableShell {
     protected Button btnTest;

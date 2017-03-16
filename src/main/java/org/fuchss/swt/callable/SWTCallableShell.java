@@ -1,4 +1,4 @@
-package home.fox.swt.callable;
+package org.fuchss.swt.callable;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -7,8 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-
-import home.fox.swt.SWTShell;
+import org.fuchss.swt.SWTShell;
 
 /**
  * This class realizes a {@link Shell} which is able to run {@link Command

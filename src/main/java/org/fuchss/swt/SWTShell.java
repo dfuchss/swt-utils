@@ -1,4 +1,4 @@
-package home.fox.swt;
+package org.fuchss.swt;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;

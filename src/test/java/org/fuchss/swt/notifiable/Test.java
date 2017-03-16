@@ -1,4 +1,4 @@
-package home.fox.swt.callable;
+package org.fuchss.swt.notifiable;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -17,9 +17,9 @@ public class Test {
             @Override
             public void run() {
                 Test.sleep();
-                shell.queue(() -> shell.btnTest.setText("Hello"));
+                shell.inform("Hello", shell.btnTest);
                 Test.sleep();
-                shell.queue(() -> shell.btnTest.setText("H"));
+                shell.informAll("H");
 
             }
         }.start();

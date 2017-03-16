@@ -1,4 +1,4 @@
-package home.fox.swt.notifiable;
+package org.fuchss.swt.notifiable;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
@@ -9,8 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-
-import home.fox.swt.SWTShell;
+import org.fuchss.swt.SWTShell;
 
 /**
  * This class realizes a {@link Shell} which is able to receive data from

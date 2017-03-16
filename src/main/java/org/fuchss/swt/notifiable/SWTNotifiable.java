@@ -1,4 +1,4 @@
-package home.fox.swt.notifiable;
+package org.fuchss.swt.notifiable;
 
 @FunctionalInterface
 public interface SWTNotifiable<INFO> {
