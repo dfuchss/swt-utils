@@ -1,15 +1,14 @@
-package org.fuchss.swt.callable;
+package org.fuchss.swt.simple;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.fuchss.swt.callable.SWTCallableShell;
+import org.fuchss.swt.simple.SWTNotifiableShell;
 
-public class SWTShellTest extends SWTCallableShell {
-    protected Button btnTest;
+public class SWTShellNotifyTest extends SWTNotifiableShell<String> {
+    protected SWTNotifiableButton<String> btnTest;
 
-    public SWTShellTest(Display display, int style) {
+    public SWTShellNotifyTest(Display display, int style) {
         super(display, style);
     }
 
@@ -22,8 +21,13 @@ public class SWTShellTest extends SWTCallableShell {
         this.setSize(450, 300);
         this.setLayout(new GridLayout(1, false));
 
-        this.btnTest = new Button(this, SWT.NONE);
+        this.btnTest = new SWTNotifiableButton<>(this, SWT.NONE);
         this.btnTest.setText("Test");
+    }
+
+    @Override
+    public void inform(String info) {
+        System.out.println(info);
     }
 
 }

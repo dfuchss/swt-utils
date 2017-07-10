@@ -1,108 +1,114 @@
 package org.fuchss.swt.callable;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Semaphore;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.fuchss.swt.SWTShell;
+import org.fuchss.swt.callable.cmd.WorkerQueue;
+import org.fuchss.swt.callable.cmd.WorkerQueueImpl;
 
-/**
- * This class realizes a {@link Shell} which is able to run {@link Command
- * Commands} from outside the SWT-Thread.
- *
- * @author Dominik Fuchss
- * @see #queue(Command)
- *
- */
-public abstract class SWTCallableShell extends SWTShell {
-    /**
-     * The upcoming commands.
-     */
-    private final Queue<Command> commandQueue = new ArrayDeque<>();
-    /**
-     * The lock to synchronize {@link #commandQueue}.
-     */
-    private final Lock lock = new ReentrantLock();
+public abstract class SWTCallableShell<Info> extends Shell implements SWTCallable<Info> {
 
-    /**
-     * Create a {@link Shell}.
-     *
-     * @param display
-     *            the display
-     * @param style
-     *            the style
-     * @see Shell#Shell(Display, int)
-     */
-    protected SWTCallableShell(Display display, int style) {
-        super(display, style);
-    }
+	private WorkerQueue queue = new WorkerQueueImpl();
 
-    /**
-     * Create a {@link Shell}.
-     *
-     * @param shell
-     *            the shell
-     * @param style
-     *            the style
-     * @see Shell#Shell(Shell, int)
-     */
-    protected SWTCallableShell(Shell shell, int style) {
-        super(shell, style);
-    }
+	private boolean isCalled = false;
+	private Semaphore callMutex = new Semaphore(1);
+	private List<Info> nextArgs = new ArrayList<>();
+	private List<SWTCallable<Info>> nextCalledObjects = new ArrayList<>();
+	private List<Info> currentArgs = null;
+	private List<SWTCallable<Info>> currentCalledObjects = null;
 
-    @Override
-    public final void startEventLoop() {
-        this.open();
-        this.layout();
-        Display display = this.getDisplay();
-        while (!this.isDisposed()) {
-            if (!display.readAndDispatch()) {
-                this.executeBySWT();
-                Thread.yield();
-            }
-        }
-    }
+	protected SWTCallableShell(Display display, int style) {
+		super(display, style);
+		this.addListener(SWT.Dispose, new DisposeController());
+	}
 
-    /**
-     * Queue a new {@link Command} to execute in SWT-Thread.
-     *
-     * @param command
-     *            the command
-     */
-    public final void queue(Command command) {
-        this.lock.lock();
-        if (command != null) {
-            this.commandQueue.add(command);
-        }
-        this.lock.unlock();
-    }
+	void decouple(Info arg, SWTCallable<Info> target) {
+		try {
+			this.callMutex.acquire();
+		} catch (InterruptedException e) {
+			return;
+		}
+		this.isCalled = true;
+		this.nextArgs.add(arg);
+		this.nextCalledObjects.add(target);
+		this.callMutex.release();
+	}
 
-    /**
-     * This will invoke all commands in {@link #commandQueue} (and clear that).
-     */
-    private final void executeBySWT() {
-        this.lock.lock();
-        this.commandQueue.forEach(c -> c.execute());
-        this.commandQueue.clear();
-        this.lock.unlock();
-    }
+	public void startEventLoop() {
+		this.open();
+		this.layout();
+		Display display = this.getDisplay();
+		while (!this.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				this.forwardCall();
+				Thread.yield();
+			}
+		}
+	}
 
-    /**
-     * This interface represents a Command which can be executed in the
-     * SWT-Thread.
-     *
-     * @author Dominik Fuchss
-     *
-     */
-    @FunctionalInterface
-    public static interface Command {
-        /**
-         * Execute the command.
-         */
-        void execute();
-    }
+	private void forwardCall() {
+		if (this.checkCall()) {
+			for (SWTCallable<Info> comp : this.currentCalledObjects) {
+				comp.receiveInfo(this.currentArgs.remove(0));
+			}
+		}
+	}
 
+	private boolean checkCall() {
+		try {
+			this.callMutex.acquire();
+			boolean result;
+			if (result = this.isCalled) {
+				this.moveNext2Current();
+				this.isCalled = false;
+			}
+			this.callMutex.release();
+			return result;
+		} catch (InterruptedException e) {
+			return false;
+		}
+	}
+
+	private void moveNext2Current() {
+		this.currentArgs = this.nextArgs;
+		this.currentCalledObjects = this.nextCalledObjects;
+		this.nextArgs = new ArrayList<>();
+		this.nextCalledObjects = new ArrayList<>();
+
+	}
+
+	@Override
+	protected void finalize() {
+		this.queue.quit();
+	}
+
+	WorkerQueue getQueue() {
+		return this.queue;
+	}
+
+	protected void sendInfo(Info info) {
+		this.decouple(info, this);
+	}
+
+	private class DisposeController implements Listener {
+
+		@Override
+		public void handleEvent(Event event) {
+			if (event.widget == SWTCallableShell.this) {
+				SWTCallableShell.this.queue.quit();
+				System.exit(0);
+			}
+		}
+
+	}
+
+	@Override
+	protected final void checkSubclass() {
+	}
 }

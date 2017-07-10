@@ -1,9 +1,9 @@
-package org.fuchss.swt.notifiable;
+package org.fuchss.swt.simple;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
-public class Test {
+public class TestExec {
 
     /**
      * Launch the application.
@@ -12,14 +12,14 @@ public class Test {
      */
     public static void main(String args[]) {
         Display display = Display.getDefault();
-        SWTShellTest shell = new SWTShellTest(display, SWT.SHELL_TRIM);
+        SWTShellExecTest shell = new SWTShellExecTest(display, SWT.SHELL_TRIM);
         new Thread() {
             @Override
             public void run() {
-                Test.sleep();
-                shell.inform("Hello", shell.btnTest);
-                Test.sleep();
-                shell.informAll("H");
+                TestExec.sleep();
+                shell.queue(() -> shell.btnTest.setText("Hello"));
+                TestExec.sleep();
+                shell.queue(() -> shell.btnTest.setText("H"));
 
             }
         }.start();

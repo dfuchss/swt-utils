@@ -1,4 +1,4 @@
-package org.fuchss.swt.notifiable;
+package org.fuchss.swt.simple;
 
 @FunctionalInterface
 public interface SWTNotifiable<INFO> {

@@ -1,4 +1,4 @@
-package org.fuchss.swt.notifiable;
+package org.fuchss.swt.simple;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
