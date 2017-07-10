@@ -16,7 +16,7 @@ If you want to use maven or some similar tool add the following code to your pom
 <dependencies>
   <dependency>
     <groupId>org.fuchss</groupId>
-	<artifactId>swt-utils</artifactId>
+    <artifactId>swt-utils</artifactId>
     <version>0.2</version>
   </dependency>
 </dependencies>
