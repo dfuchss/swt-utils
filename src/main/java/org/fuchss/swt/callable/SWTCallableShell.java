@@ -102,7 +102,6 @@ public abstract class SWTCallableShell<Info> extends Shell implements SWTCallabl
 		public void handleEvent(Event event) {
 			if (event.widget == SWTCallableShell.this) {
 				SWTCallableShell.this.queue.quit();
-				System.exit(0);
 			}
 		}
 

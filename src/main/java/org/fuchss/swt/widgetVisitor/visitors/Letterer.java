@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.fuchss.swt.widgetVisitor.WidgetVisitor;
@@ -17,6 +18,7 @@ import org.fuchss.swt.widgetVisitor.visitors.initializers.ButtonInitalizer;
 import org.fuchss.swt.widgetVisitor.visitors.initializers.ComboIntializer;
 import org.fuchss.swt.widgetVisitor.visitors.initializers.Initializer;
 import org.fuchss.swt.widgetVisitor.visitors.initializers.LabelInitializer;
+import org.fuchss.swt.widgetVisitor.visitors.initializers.TabItemInitializer;
 import org.fuchss.swt.widgetVisitor.visitors.initializers.TableColumnInitializer;
 import org.fuchss.swt.widgetVisitor.visitors.initializers.TextInitializer;
 
@@ -40,6 +42,7 @@ public class Letterer implements WidgetVisitor {
 		this.initializers.put(Button.class, new ButtonInitalizer(this.obj));
 		this.initializers.put(Combo.class, new ComboIntializer(this.obj));
 		this.initializers.put(Label.class, new LabelInitializer(this.obj));
+		this.initializers.put(TabItem.class, new TabItemInitializer(this.obj));
 		this.initializers.put(TableColumn.class, new TableColumnInitializer(this.obj));
 		this.initializers.put(Text.class, new TextInitializer(this.obj));
 	}
