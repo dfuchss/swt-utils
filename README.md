@@ -1,4 +1,5 @@
 # swt-utils
+[![Build Status](https://travis-ci.org/dfuchss/swt-utils.svg?branch=master)](https://travis-ci.org/dfuchss/swt-utils)
 [![GitHub issues](https://img.shields.io/github/issues/dfuchss/swt-utils.svg?style=square)](https://github.com/dfuchss/swt-utils/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=square)](https://github.com/dfuchss/swt-utils/blob/master/LICENCE.md)
 
