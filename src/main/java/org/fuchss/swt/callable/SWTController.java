@@ -3,8 +3,8 @@ package org.fuchss.swt.callable;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Widget;
-import org.fuchss.swt.callable.cmd.Job;
-import org.fuchss.swt.callable.cmd.JobMapper;
+import org.fuchss.swt.cmd.Job;
+import org.fuchss.swt.cmd.JobMapper;
 
 public abstract class SWTController<Info> extends JobMapper implements SWTCallable<Info>, Listener {
 

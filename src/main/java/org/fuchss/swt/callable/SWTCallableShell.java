@@ -9,8 +9,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.fuchss.swt.callable.cmd.WorkerQueue;
-import org.fuchss.swt.callable.cmd.WorkerQueueImpl;
+import org.fuchss.swt.cmd.WorkerQueue;
+import org.fuchss.swt.cmd.WorkerQueueImpl;
 
 public abstract class SWTCallableShell<Info> extends Shell implements SWTCallable<Info> {
 

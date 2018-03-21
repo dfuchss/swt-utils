@@ -1,4 +1,4 @@
-package org.fuchss.swt.callable.cmd;
+package org.fuchss.swt.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ public class WorkerQueueImpl implements WorkerQueue {
 		this.jobList = new ArrayList<>();
 		this.worker = new Worker(this);
 		this.myWorker = new Thread(this.worker);
+		this.myWorker.setName("WorkerQueueThread");
 		this.myWorker.start();
 	}
 
@@ -28,7 +29,7 @@ public class WorkerQueueImpl implements WorkerQueue {
 	public void put(Job job) {
 		synchronized (this.jobList) {
 			int idx;
-			if ((idx = this.jobList.size()) > 0 && this.jobList.get(idx - 1).isReducedBy(job)) {
+			if (((idx = this.jobList.size()) > 0) && this.jobList.get(idx - 1).isReducedBy(job)) {
 				this.jobList.remove(idx - 1);
 				this.read.acquireUninterruptibly();
 			} else {
@@ -56,7 +57,7 @@ public class WorkerQueueImpl implements WorkerQueue {
 
 	private void reduceJobInProgress(Job job) {
 		this.reduce.acquireUninterruptibly();
-		if (this.jobToReduce != null && this.jobToReduce.isReducedBy(job)) {
+		if ((this.jobToReduce != null) && this.jobToReduce.isReducedBy(job)) {
 			this.jobToReduce = null;
 		}
 		this.reduce.release();

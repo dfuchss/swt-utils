@@ -2,7 +2,9 @@ package org.fuchss.swt.widgetVisitor.visitors;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.swt.widgets.Button;
@@ -54,11 +56,11 @@ public class Letterer implements WidgetVisitor {
 	}
 
 	private void initializeContent() {
-		Field[] fields = this.obj.getClass().getDeclaredFields();
+		List<Field> fields = new ArrayList<>();
+		this.possibleFields(this.obj.getClass(), fields);
 		for (Field field : fields) {
 			this.initializeField(field);
 		}
-
 	}
 
 	private void initializeField(Field field) {
@@ -67,12 +69,11 @@ public class Letterer implements WidgetVisitor {
 			Type type = field.getGenericType();
 			Initializer initializer = this.initializers.get(type);
 			if (initializer != null) {
-				initializer.setFieldObject(field.get(this.obj), field.getName());
+				initializer.setFieldObject(field.get(this.obj), this.propId(field));
 				initializer.initializeField();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }

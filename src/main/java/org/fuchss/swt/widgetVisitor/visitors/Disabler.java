@@ -2,7 +2,9 @@ package org.fuchss.swt.widgetVisitor.visitors;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.swt.widgets.Button;
@@ -51,7 +53,8 @@ public class Disabler implements WidgetVisitor {
 	}
 
 	private void disableContent() {
-		Field[] fields = this.obj.getClass().getDeclaredFields();
+		List<Field> fields = new ArrayList<>();
+		this.possibleFields(this.obj.getClass(), fields);
 		for (Field field : fields) {
 			this.disableField(field);
 			this.hideField(field);
@@ -65,7 +68,7 @@ public class Disabler implements WidgetVisitor {
 			Type type = field.getGenericType();
 			Initializer initializer = this.initializers.get(type);
 			if (initializer != null) {
-				initializer.setFieldObject(field.get(this.obj), field.getName());
+				initializer.setFieldObject(field.get(this.obj), this.propId(field));
 				initializer.disableField(this.state);
 			}
 		} catch (Exception e) {
@@ -79,7 +82,7 @@ public class Disabler implements WidgetVisitor {
 			Type type = field.getGenericType();
 			Initializer initializer = this.initializers.get(type);
 			if (initializer != null) {
-				initializer.setFieldObject(field.get(this.obj), field.getName());
+				initializer.setFieldObject(field.get(this.obj), this.propId(field));
 				initializer.hideField(this.state);
 			}
 		} catch (Exception e) {

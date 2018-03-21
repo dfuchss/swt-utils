@@ -1,6 +1,8 @@
-package org.fuchss.swt.callable.cmd;
+package org.fuchss.swt.cmd;
 
 public interface WorkerQueue {
+	WorkerQueue queue = new WorkerQueueImpl();
+
 	void put(Job j);
 
 	void quit();

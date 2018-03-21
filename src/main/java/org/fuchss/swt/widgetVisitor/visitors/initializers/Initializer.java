@@ -1,9 +1,10 @@
 package org.fuchss.swt.widgetVisitor.visitors.initializers;
 
+import java.lang.annotation.Annotation;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.fuchss.swt.widgetVisitor.visitors.annotation.Item;
+import org.fuchss.swt.widgetVisitor.visitors.annotation.Elem;
 import org.fuchss.swt.widgetVisitor.visitors.annotation.Resource;
 
 public class Initializer {
@@ -12,13 +13,21 @@ public class Initializer {
 	protected String prefix;
 
 	public Initializer(Object obj) {
-		Resource resource = obj.getClass().getAnnotation(Resource.class);
-		this.prefix = (obj.getClass().getAnnotation(Item.class) == null) ? "" : obj.getClass().getAnnotation(Item.class).item();
+		Resource resource = this.getAnnotation(obj.getClass(), Resource.class);
+		Elem item = this.getAnnotation(obj.getClass(), Elem.class);
+		this.prefix = (item == null) ? "" : item.value();
 		if (resource == null) {
 			this.resource = null;
 		} else {
-			this.resource = ResourceBundle.getBundle(resource.res());
+			this.resource = ResourceBundle.getBundle(resource.value());
 		}
+	}
+
+	private <A extends Annotation> A getAnnotation(Class<?> clazz, Class<A> type) {
+		if ((clazz == null) || clazz.equals(Object.class))
+			return null;
+		A annotation = clazz.getAnnotation(type);
+		return (annotation != null) ? annotation : this.getAnnotation(clazz.getSuperclass(), type);
 	}
 
 	protected String[] getStringArray(String name, String extension, int size) {

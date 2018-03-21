@@ -1,4 +1,4 @@
-package org.fuchss.swt.callable.cmd;
+package org.fuchss.swt.cmd;
 
 public class Worker implements Runnable {
 
