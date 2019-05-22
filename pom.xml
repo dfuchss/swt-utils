@@ -1,25 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fuchss</groupId>
 	<artifactId>swt-utils</artifactId>
-	<version>0.2.4</version>
+	<version>0.3</version>
 	<name>SWT-Utils</name>
 	<prerequisites>
 		<maven>3.0</maven>
 	</prerequisites>
 	<properties>
-		<swt.version>4.6.1</swt.version>
+		<swt.version>3.110.0</swt.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>9</maven.compiler.source>
 		<maven.compiler.target>9</maven.compiler.target>
 	</properties>
-	<repositories>
-		<repository>
-			<id>maven-eclipse-repo</id>
-			<url>http://maven-eclipse.github.io/maven</url>
-		</repository>
-	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>synergian-repo</id>
@@ -100,53 +95,82 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.swt</groupId>
-			<artifactId>${swt.artifactId}</artifactId>
-			<version>${swt.version}</version>
-		</dependency>
-	</dependencies>
 
 	<profiles>
 		<profile>
-			<id>linux64</id>
-			<activation>
-				<os>
-					<family>linux</family>
-				</os>
-			</activation>
-			<properties>
-				<swt.artifactId>org.eclipse.swt.gtk.linux.x86_64</swt.artifactId>
-				<opengl.native>natives-linux</opengl.native>
-				<profile.folder>build/linux</profile.folder>
-			</properties>
-		</profile>
-		<profile>
-			<id>macosx64</id>
-			<activation>
-				<os>
-					<family>mac</family>
-				</os>
-			</activation>
-			<properties>
-				<swt.artifactId>org.eclipse.swt.cocoa.macosx.x86_64</swt.artifactId>
-				<opengl.native>natives-osx</opengl.native>
-				<profile.folder>build/macos</profile.folder>
-			</properties>
-		</profile>
-		<profile>
-			<id>win64</id>
+			<id>windows</id>
 			<activation>
 				<os>
 					<family>windows</family>
 				</os>
 			</activation>
-			<properties>
-				<swt.artifactId>org.eclipse.swt.win32.win32.x86_64</swt.artifactId>
-				<opengl.native>natives-windows</opengl.native>
-				<profile.folder>build/windows</profile.folder>
-			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.eclipse.platform</groupId>
+					<artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
+					<version>${swt.version}</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.eclipse.platform</groupId>
+							<artifactId>org.eclipse.swt.gtk.linux.aarch64</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse.platform</groupId>
+							<artifactId>org.eclipse.swt.gtk.linux.arm</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>linux</id>
+			<activation>
+				<os>
+					<family>linux</family>
+				</os>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.eclipse.platform</groupId>
+					<artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
+					<version>${swt.version}</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.eclipse.platform</groupId>
+							<artifactId>org.eclipse.swt.gtk.linux.aarch64</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse.platform</groupId>
+							<artifactId>org.eclipse.swt.gtk.linux.arm</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>mac</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.eclipse.platform</groupId>
+					<artifactId>org.eclipse.swt.cocoa.macosx.x86_64</artifactId>
+					<version>${swt.version}</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.eclipse.platform</groupId>
+							<artifactId>org.eclipse.swt.gtk.linux.aarch64</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>org.eclipse.platform</groupId>
+							<artifactId>org.eclipse.swt.gtk.linux.arm</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 </project>
