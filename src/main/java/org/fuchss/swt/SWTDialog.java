@@ -28,7 +28,7 @@ public abstract class SWTDialog extends Dialog {
 
 	public final void open() {
 		this.shell = new Shell(this.getParent(), this.getStyle());
-		this.createContents();
+		this.createContents(this.shell);
 		this.shell.open();
 		this.shell.layout();
 		Display display = this.getParent().getDisplay();
@@ -42,8 +42,11 @@ public abstract class SWTDialog extends Dialog {
 
 	/**
 	 * Create contents of the dialog.
+	 *
+	 * @param shell
+	 *            a new created shell
 	 */
-	protected abstract void createContents();
+	protected abstract void createContents(Shell shell);
 
 	/**
 	 * Cleanup some stuff. Will be invoked at the end of {@link #open()}.
