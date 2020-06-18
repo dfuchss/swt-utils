@@ -18,91 +18,92 @@ import org.fuchss.swt.SWTShell;
  *
  */
 public abstract class SWTExecutorShell extends SWTShell {
-    /**
-     * The upcoming commands.
-     */
-    private final Queue<Command> commandQueue = new ArrayDeque<>();
-    /**
-     * The lock to synchronize {@link #commandQueue}.
-     */
-    private final Lock lock = new ReentrantLock();
+	/**
+	 * The upcoming commands.
+	 */
+	private final Queue<Command> commandQueue = new ArrayDeque<>();
+	/**
+	 * The lock to synchronize {@link #commandQueue}.
+	 */
+	private final Lock lock = new ReentrantLock();
 
-    /**
-     * Create a {@link Shell}.
-     *
-     * @param display
-     *            the display
-     * @param style
-     *            the style
-     * @see Shell#Shell(Display, int)
-     */
-    protected SWTExecutorShell(Display display, int style) {
-        super(display, style);
-    }
+	/**
+	 * Create a {@link Shell}.
+	 *
+	 * @param display
+	 *            the display
+	 * @param style
+	 *            the style
+	 * @see Shell#Shell(Display, int)
+	 */
+	protected SWTExecutorShell(Display display, int style) {
+		super(display, style);
+	}
 
-    /**
-     * Create a {@link Shell}.
-     *
-     * @param shell
-     *            the shell
-     * @param style
-     *            the style
-     * @see Shell#Shell(Shell, int)
-     */
-    protected SWTExecutorShell(Shell shell, int style) {
-        super(shell, style);
-    }
+	/**
+	 * Create a {@link Shell}.
+	 *
+	 * @param shell
+	 *            the shell
+	 * @param style
+	 *            the style
+	 * @see Shell#Shell(Shell, int)
+	 */
+	protected SWTExecutorShell(Shell shell, int style) {
+		super(shell, style);
+	}
 
-    @Override
-    public final void startEventLoop() {
-        this.open();
-        this.layout();
-        Display display = this.getDisplay();
-        while (!this.isDisposed()) {
-            if (!display.readAndDispatch()) {
-                this.executeBySWT();
-                Thread.yield();
-            }
-        }
-    }
+	@Override
+	public final void startEventLoop() {
+		this.open();
+		this.layout();
+		Display display = this.getDisplay();
+		while (!this.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				this.executeBySWT();
+				Thread.yield();
+			}
+		}
+	}
 
-    /**
-     * Queue a new {@link Command} to execute in SWT-Thread.
-     *
-     * @param command
-     *            the command
-     */
-    public final void queue(Command command) {
-        this.lock.lock();
-        if (command != null) {
-            this.commandQueue.add(command);
-        }
-        this.lock.unlock();
-    }
+	/**
+	 * Queue a new {@link Command} to execute in SWT-Thread.
+	 *
+	 * @param command
+	 *            the command
+	 */
+	public final void queue(Command command) {
+		this.lock.lock();
+		if (command != null) {
+			this.commandQueue.add(command);
+		}
+		this.lock.unlock();
+	}
 
-    /**
-     * This will invoke all commands in {@link #commandQueue} (and clear that).
-     */
-    private final void executeBySWT() {
-        this.lock.lock();
-        this.commandQueue.forEach(c -> c.execute());
-        this.commandQueue.clear();
-        this.lock.unlock();
-    }
+	/**
+	 * This will invoke all commands in {@link #commandQueue} (and clear that).
+	 */
+	private final void executeBySWT() {
+		this.lock.lock();
+		Queue<Command> copy = new ArrayDeque<>(this.commandQueue);
+		this.commandQueue.clear();
+		copy.forEach(c -> c.execute());
+		this.lock.unlock();
+	}
 
-    /**
-     * This interface represents a Command which can be executed in the
-     * SWT-Thread.
-     *
-     * @author Dominik Fuchss
-     *
-     */
-    @FunctionalInterface
-    public static interface Command {
-        /**
-         * Execute the command.
-         */
-        void execute();
-    }
+	/**
+	 * This interface represents a Command which can be executed in the
+	 * SWT-Thread.
+	 *
+	 * @author Dominik Fuchss
+	 *
+	 */
+	@FunctionalInterface
+	public static interface Command {
+		/**
+		 * Execute the command.
+		 */
+		void execute();
+	}
 
 }

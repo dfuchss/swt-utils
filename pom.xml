@@ -4,16 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fuchss</groupId>
 	<artifactId>swt-utils</artifactId>
-	<version>0.3</version>
+	<version>0.4</version>
 	<name>SWT-Utils</name>
 	<prerequisites>
 		<maven>3.0</maven>
 	</prerequisites>
 	<properties>
-		<swt.version>3.110.0</swt.version>
+		<swt.version>3.114.100</swt.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>9</maven.compiler.source>
-		<maven.compiler.target>9</maven.compiler.target>
+		<maven.compiler.source>14</maven.compiler.source>
+		<maven.compiler.target>14</maven.compiler.target>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>
@@ -104,6 +104,9 @@
 					<family>windows</family>
 				</os>
 			</activation>
+			<properties>
+				<os-id>windows</os-id>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.eclipse.platform</groupId>
@@ -129,6 +132,9 @@
 					<family>linux</family>
 				</os>
 			</activation>
+			<properties>
+				<os-id>linux</os-id>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.eclipse.platform</groupId>
@@ -154,6 +160,9 @@
 					<family>mac</family>
 				</os>
 			</activation>
+			<properties>
+				<os-id>mac</os-id>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.eclipse.platform</groupId>

@@ -66,7 +66,6 @@ public abstract class SWTShell extends Shell {
 		int newLeftPos = (mon.getBounds().width - this.getSize().x) / 2;
 		int newTopPos = (mon.getBounds().height - this.getSize().y) / 2;
 		this.setLocation(newLeftPos, newTopPos);
-
 	}
 
 	@Override
