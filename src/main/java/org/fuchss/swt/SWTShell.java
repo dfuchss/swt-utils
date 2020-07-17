@@ -21,8 +21,25 @@ public abstract class SWTShell extends Shell {
 	 * @see Shell#Shell(Display, int)
 	 */
 	protected SWTShell(Display display, int style) {
+		this(display, style, true);
+	}
+
+	/**
+	 * Create a {@link SWTShell}.
+	 *
+	 * @param display
+	 *            the display
+	 * @param style
+	 *            the style
+	 * @param createContents
+	 *            shall this constructor invoke {@link #createContents()}
+	 * @see Shell#Shell(Display, int)
+	 */
+	protected SWTShell(Display display, int style, boolean createContents) {
 		super(display, style);
-		this.createContents();
+		if (createContents) {
+			this.createContents();
+		}
 	}
 
 	/**
@@ -35,8 +52,25 @@ public abstract class SWTShell extends Shell {
 	 * @see Shell#Shell(Shell, int)
 	 */
 	protected SWTShell(Shell shell, int style) {
+		this(shell, style, true);
+	}
+
+	/**
+	 * Create a {@link SWTShell}.
+	 *
+	 * @param shell
+	 *            the shell
+	 * @param style
+	 *            the style
+	 * @param createContents
+	 *            shall this constructor invoke {@link #createContents()}
+	 * @see Shell#Shell(Shell, int)
+	 */
+	protected SWTShell(Shell shell, int style, boolean createContents) {
 		super(shell, style);
-		this.createContents();
+		if (createContents) {
+			this.createContents();
+		}
 	}
 
 	/**
