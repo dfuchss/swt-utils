@@ -8,7 +8,7 @@ This project contains a small set of classes that may help to work with SWT
 If you want to use maven or some similar tool add the following code to your pom:
 ```xml
 <repositories>
-  <repository>
+	<repository>
 		<id>github</id>
 		<name>GitHub Maven Packages</name>
 		<url>https://maven.pkg.github.com/dfuchss/swt-utils</url>
