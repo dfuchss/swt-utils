@@ -4,37 +4,34 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fuchss</groupId>
 	<artifactId>swt-utils</artifactId>
-	<version>0.4</version>
+	<version>develop-SNAPSHOT</version>
 	<name>SWT-Utils</name>
+	
 	<prerequisites>
 		<maven>3.0</maven>
 	</prerequisites>
+	
 	<properties>
 		<swt.version>3.114.100</swt.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>14</maven.compiler.source>
 		<maven.compiler.target>14</maven.compiler.target>
 	</properties>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>synergian-repo</id>
-			<url>https://raw.github.com/synergian/wagon-git/releases</url>
-		</pluginRepository>
-	</pluginRepositories>
+	
 	<distributionManagement>
 		<repository>
 			<id>github</id>
-			<url>git:releases://git@github.com:dfuchss/maven.git</url>
+			<name>GitHub Maven Packages</name>
+			<url>https://maven.pkg.github.com/dfuchss/swt-utils</url>
 		</repository>
+		<snapshotRepository>
+			<id>github</id>
+			<name>GitHub Maven Packages</name>
+			<url>https://maven.pkg.github.com/dfuchss/swt-utils</url>
+		</snapshotRepository>
 	</distributionManagement>
+	
 	<build>
-		<extensions>
-			<extension>
-				<groupId>ar.com.synergian</groupId>
-				<artifactId>wagon-git</artifactId>
-				<version>0.2.5</version>
-			</extension>
-		</extensions>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

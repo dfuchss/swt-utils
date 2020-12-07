@@ -1,8 +1,6 @@
 package org.fuchss.swt.simple;
 
 import org.eclipse.swt.widgets.Button;
-import org.fuchss.swt.simple.SWTNotifiable;
-import org.fuchss.swt.simple.SWTNotifiableShell;
 
 public class SWTNotifiableButton<INFO> extends Button implements SWTNotifiable<INFO> {
 
@@ -12,8 +10,9 @@ public class SWTNotifiableButton<INFO> extends Button implements SWTNotifiable<I
 
 	@Override
 	public void inform(INFO info) {
-		if (info.getClass() == String.class)
+		if (info.getClass() == String.class) {
 			this.setText((String) info);
+		}
 
 	}
 
