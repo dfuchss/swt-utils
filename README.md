@@ -11,7 +11,7 @@ If you want to use maven or some similar tool add the following code to your pom
 	<repository>
 		<id>github</id>
 		<name>GitHub Maven Packages</name>
-		<url>https://maven.pkg.github.com/dfuchss/swt-utils</url>
+		<url>https://nexus.fuchss.org/repository/github/</url>
 	</repository>
 </repositories>
 

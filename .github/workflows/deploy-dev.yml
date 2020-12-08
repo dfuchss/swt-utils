@@ -24,7 +24,7 @@ jobs:
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v4
         with:
-          servers: '[{ "id": "github", "username": "x-access-token", "password": "${{ secrets.GITHUB_TOKEN }}" }]'
+          servers: '[{ "id": "gh-releases", "username": "gh-actions", "password": "${{ secrets.DEPLOY_PASS }}" }, { "id": "gh-snapshots", "username": "gh-actions", "password": "${{ secrets.DEPLOY_PASS }}" }]'
       
       - name: Cache Maven Packages
         uses: actions/cache@v1
@@ -38,5 +38,3 @@ jobs:
       
       - name: Publish Package
         run: mvn -B deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

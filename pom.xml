@@ -20,14 +20,14 @@
 	
 	<distributionManagement>
 		<repository>
-			<id>github</id>
-			<name>GitHub Maven Packages</name>
-			<url>https://maven.pkg.github.com/dfuchss/swt-utils</url>
+			<id>gh-releases</id>
+			<name>git.fuchss.org Releases</name>
+			<url>https://nexus.fuchss.org/repository/github-releases/</url>
 		</repository>
 		<snapshotRepository>
-			<id>github</id>
-			<name>GitHub Maven Packages</name>
-			<url>https://maven.pkg.github.com/dfuchss/swt-utils</url>
+			<id>gh-snapshots</id>
+			<name>git.fuchss.org Snapshots</name>
+			<url>https://nexus.fuchss.org/repository/github-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	
