@@ -9,8 +9,8 @@ If you want to use maven or some similar tool add the following code to your pom
 ```xml
 <repositories>
 	<repository>
-		<id>github</id>
-		<name>GitHub Maven Packages</name>
+		<id>gh-fuchss</id>
+		<name>Github Nexus Fuchss</name>
 		<url>https://nexus.fuchss.org/repository/github/</url>
 	</repository>
 </repositories>
