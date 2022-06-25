@@ -1,13 +1,13 @@
 package org.fuchss.swt.simple;
 
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.fuchss.swt.SWTShell;
+
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.fuchss.swt.SWTShell;
 
 /**
  * This class realizes a {@link Shell} which is able to run {@link Command
@@ -15,7 +15,6 @@ import org.fuchss.swt.SWTShell;
  *
  * @author Dominik Fuchss
  * @see #queue(Command)
- *
  */
 public abstract class SWTExecutorShell extends SWTShell {
 	/**
@@ -30,10 +29,8 @@ public abstract class SWTExecutorShell extends SWTShell {
 	/**
 	 * Create a {@link Shell}.
 	 *
-	 * @param display
-	 *            the display
-	 * @param style
-	 *            the style
+	 * @param display the display
+	 * @param style   the style
 	 * @see Shell#Shell(Display, int)
 	 */
 	protected SWTExecutorShell(Display display, int style) {
@@ -43,10 +40,8 @@ public abstract class SWTExecutorShell extends SWTShell {
 	/**
 	 * Create a {@link Shell}.
 	 *
-	 * @param shell
-	 *            the shell
-	 * @param style
-	 *            the style
+	 * @param shell the shell
+	 * @param style the style
 	 * @see Shell#Shell(Shell, int)
 	 */
 	protected SWTExecutorShell(Shell shell, int style) {
@@ -69,8 +64,7 @@ public abstract class SWTExecutorShell extends SWTShell {
 	/**
 	 * Queue a new {@link Command} to execute in SWT-Thread.
 	 *
-	 * @param command
-	 *            the command
+	 * @param command the command
 	 */
 	public final void queue(Command command) {
 		this.lock.lock();
@@ -96,10 +90,9 @@ public abstract class SWTExecutorShell extends SWTShell {
 	 * SWT-Thread.
 	 *
 	 * @author Dominik Fuchss
-	 *
 	 */
 	@FunctionalInterface
-	public static interface Command {
+	public interface Command {
 		/**
 		 * Execute the command.
 		 */

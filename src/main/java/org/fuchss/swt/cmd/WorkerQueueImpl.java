@@ -6,14 +6,14 @@ import java.util.concurrent.Semaphore;
 
 public class WorkerQueueImpl implements WorkerQueue {
 
-	private Semaphore read;
+	private final Semaphore read;
 
-	private Semaphore reduce;
+	private final Semaphore reduce;
 	private Job jobToReduce;
 
-	private List<Job> jobList;
-	private Worker worker;
-	private Thread myWorker;
+	private final List<Job> jobList;
+	private final Worker worker;
+	private final Thread myWorker;
 
 	public WorkerQueueImpl() {
 		this.read = new Semaphore(0);

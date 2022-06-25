@@ -1,8 +1,8 @@
 package org.fuchss.swt.widgetVisitor.visitors.initializers;
 
-import java.util.Arrays;
-
 import org.eclipse.swt.widgets.Combo;
+
+import java.util.Arrays;
 
 public class ComboIntializer extends Initializer {
 	private Combo combo;
@@ -30,13 +30,10 @@ public class ComboIntializer extends Initializer {
 	public void disableField(String state) {
 		String[] states = this.getStringArray(this.name, "enable", 1);
 		if (states != null) {
-			if (Arrays.asList(states).contains(state)) {
-				this.combo.setEnabled(true);
-			} else {
-				this.combo.setEnabled(false);
-			}
+			this.combo.setEnabled(Arrays.asList(states).contains(state));
 		} else {
 			this.combo.setEnabled(true);
 		}
-	};
+	}
+
 }

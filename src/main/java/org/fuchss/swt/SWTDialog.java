@@ -8,7 +8,6 @@ import org.eclipse.swt.widgets.Shell;
  * Extends to classical {@link Dialog} of SWT.
  *
  * @author Dominik Fuchss
- *
  */
 public abstract class SWTDialog extends Dialog {
 
@@ -17,10 +16,8 @@ public abstract class SWTDialog extends Dialog {
 	/**
 	 * Create a dialog by parent and style.
 	 *
-	 * @param parent
-	 *            the parent
-	 * @param style
-	 *            the style
+	 * @param parent the parent
+	 * @param style  the style
 	 */
 	protected SWTDialog(Shell parent, int style) {
 		super(parent, style);
@@ -43,8 +40,7 @@ public abstract class SWTDialog extends Dialog {
 	/**
 	 * Create contents of the dialog.
 	 *
-	 * @param shell
-	 *            a new created shell
+	 * @param shell a new created shell
 	 */
 	protected abstract void createContents(Shell shell);
 

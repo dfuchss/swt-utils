@@ -5,33 +5,31 @@ import org.eclipse.swt.widgets.Display;
 
 public class TestExec {
 
-    /**
-     * Launch the application.
-     *
-     * @param args
-     */
-    public static void main(String args[]) {
-        Display display = Display.getDefault();
-        SWTShellExecTest shell = new SWTShellExecTest(display, SWT.SHELL_TRIM);
-        new Thread() {
-            @Override
-            public void run() {
-                TestExec.sleep();
-                shell.queue(() -> shell.btnTest.setText("Hello"));
-                TestExec.sleep();
-                shell.queue(() -> shell.btnTest.setText("H"));
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		Display display = Display.getDefault();
+		SWTShellExecTest shell = new SWTShellExecTest(display, SWT.SHELL_TRIM);
+		new Thread() {
+			@Override
+			public void run() {
+				TestExec.sleep();
+				shell.queue(() -> shell.btnTest.setText("Hello"));
+				TestExec.sleep();
+				shell.queue(() -> shell.btnTest.setText("H"));
 
-            }
-        }.start();
+			}
+		}.start();
 
-        shell.startEventLoop();
-    }
+		shell.startEventLoop();
+	}
 
-    static final void sleep() {
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-        }
+	static void sleep() {
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException ignored) {
+		}
 
-    }
+	}
 }

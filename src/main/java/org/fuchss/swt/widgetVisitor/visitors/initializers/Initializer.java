@@ -1,11 +1,11 @@
 package org.fuchss.swt.widgetVisitor.visitors.initializers;
 
+import org.fuchss.swt.widgetVisitor.visitors.annotation.Elem;
+import org.fuchss.swt.widgetVisitor.visitors.annotation.Resource;
+
 import java.lang.annotation.Annotation;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
-import org.fuchss.swt.widgetVisitor.visitors.annotation.Elem;
-import org.fuchss.swt.widgetVisitor.visitors.annotation.Resource;
 
 public class Initializer {
 

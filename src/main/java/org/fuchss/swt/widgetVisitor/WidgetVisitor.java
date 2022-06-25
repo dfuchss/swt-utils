@@ -1,13 +1,13 @@
 package org.fuchss.swt.widgetVisitor;
 
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Dialog;
+import org.fuchss.swt.widgetVisitor.visitors.annotation.Id;
+
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Dialog;
-import org.fuchss.swt.widgetVisitor.visitors.annotation.Id;
 
 public interface WidgetVisitor {
 	void visit(Composite composite);

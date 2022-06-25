@@ -1,9 +1,9 @@
 package org.fuchss.swt.widgetVisitor.visitors.initializers;
 
-import java.util.Arrays;
-
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Text;
+
+import java.util.Arrays;
 
 public class TextInitializer extends Initializer {
 
@@ -28,7 +28,7 @@ public class TextInitializer extends Initializer {
 
 		str = this.getString(this.name, "editable");
 		if (str != null) {
-			this.text.setEditable("true".equals(str.toLowerCase()));
+			this.text.setEditable("true".equalsIgnoreCase(str));
 		}
 
 		Integer size = this.getInteger(this.name, "width");
@@ -47,11 +47,7 @@ public class TextInitializer extends Initializer {
 	public void disableField(String state) {
 		String[] states = this.getStringArray(this.name, "enable", 1);
 		if (states != null) {
-			if (Arrays.asList(states).contains(state)) {
-				this.text.setEnabled(true);
-			} else {
-				this.text.setEnabled(false);
-			}
+			this.text.setEnabled(Arrays.asList(states).contains(state));
 		} else {
 			this.text.setEnabled(true);
 		}

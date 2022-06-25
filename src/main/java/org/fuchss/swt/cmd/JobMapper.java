@@ -1,15 +1,15 @@
 package org.fuchss.swt.cmd;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Widget;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class JobMapper {
 
-	private Map<Widget, Map<Integer, Job>> cmdMap = new HashMap<>();
-	private WorkerQueue queue;
+	private final Map<Widget, Map<Integer, Job>> cmdMap = new HashMap<>();
+	private final WorkerQueue queue;
 
 	protected JobMapper(WorkerQueue q) {
 		this.queue = q;

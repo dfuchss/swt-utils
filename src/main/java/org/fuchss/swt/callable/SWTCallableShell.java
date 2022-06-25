@@ -1,9 +1,5 @@
 package org.fuchss.swt.callable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Semaphore;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -12,12 +8,16 @@ import org.eclipse.swt.widgets.Shell;
 import org.fuchss.swt.cmd.WorkerQueue;
 import org.fuchss.swt.cmd.WorkerQueueImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Semaphore;
+
 public abstract class SWTCallableShell<Info> extends Shell implements SWTCallable<Info> {
 
-	private WorkerQueue queue = new WorkerQueueImpl();
+	private final WorkerQueue queue = new WorkerQueueImpl();
 
 	private boolean isCalled = false;
-	private Semaphore callMutex = new Semaphore(1);
+	private final Semaphore callMutex = new Semaphore(1);
 	private List<Info> nextArgs = new ArrayList<>();
 	private List<SWTCallable<Info>> nextCalledObjects = new ArrayList<>();
 	private List<Info> currentArgs = null;

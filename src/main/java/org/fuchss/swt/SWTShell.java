@@ -8,16 +8,13 @@ import org.eclipse.swt.widgets.Shell;
  * Extends to classical {@link Shell} of SWT.
  *
  * @author Dominik Fuchss
- *
  */
 public abstract class SWTShell extends Shell {
 	/**
 	 * Create a {@link SWTShell}.
 	 *
-	 * @param display
-	 *            the display
-	 * @param style
-	 *            the style
+	 * @param display the display
+	 * @param style   the style
 	 * @see Shell#Shell(Display, int)
 	 */
 	protected SWTShell(Display display, int style) {
@@ -27,12 +24,9 @@ public abstract class SWTShell extends Shell {
 	/**
 	 * Create a {@link SWTShell}.
 	 *
-	 * @param display
-	 *            the display
-	 * @param style
-	 *            the style
-	 * @param createContents
-	 *            shall this constructor invoke {@link #createContents()}
+	 * @param display        the display
+	 * @param style          the style
+	 * @param createContents shall this constructor invoke {@link #createContents()}
 	 * @see Shell#Shell(Display, int)
 	 */
 	protected SWTShell(Display display, int style, boolean createContents) {
@@ -45,10 +39,8 @@ public abstract class SWTShell extends Shell {
 	/**
 	 * Create a {@link SWTShell}.
 	 *
-	 * @param shell
-	 *            the shell
-	 * @param style
-	 *            the style
+	 * @param shell the shell
+	 * @param style the style
 	 * @see Shell#Shell(Shell, int)
 	 */
 	protected SWTShell(Shell shell, int style) {
@@ -58,12 +50,9 @@ public abstract class SWTShell extends Shell {
 	/**
 	 * Create a {@link SWTShell}.
 	 *
-	 * @param shell
-	 *            the shell
-	 * @param style
-	 *            the style
-	 * @param createContents
-	 *            shall this constructor invoke {@link #createContents()}
+	 * @param shell          the shell
+	 * @param style          the style
+	 * @param createContents shall this constructor invoke {@link #createContents()}
 	 * @see Shell#Shell(Shell, int)
 	 */
 	protected SWTShell(Shell shell, int style, boolean createContents) {

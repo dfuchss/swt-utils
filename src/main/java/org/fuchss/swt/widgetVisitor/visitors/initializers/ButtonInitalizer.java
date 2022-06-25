@@ -1,9 +1,9 @@
 package org.fuchss.swt.widgetVisitor.visitors.initializers;
 
-import java.util.Arrays;
-
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
+
+import java.util.Arrays;
 
 public class ButtonInitalizer extends Initializer {
 
@@ -23,7 +23,7 @@ public class ButtonInitalizer extends Initializer {
 
 		str = this.getString(this.name, "selection");
 		if (str != null) {
-			this.button.setSelection("true".equals(str.toLowerCase()));
+			this.button.setSelection("true".equalsIgnoreCase(str));
 		}
 
 		Integer[] size = this.getIntegerArray(this.name, "size", 2);
@@ -43,11 +43,7 @@ public class ButtonInitalizer extends Initializer {
 	public void disableField(String state) {
 		String[] states = this.getStringArray(this.name, "enable", 1);
 		if (states != null) {
-			if (Arrays.asList(states).contains(state)) {
-				this.button.setEnabled(true);
-			} else {
-				this.button.setEnabled(false);
-			}
+			this.button.setEnabled(Arrays.asList(states).contains(state));
 		} else {
 			this.button.setEnabled(true);
 		}
@@ -57,11 +53,7 @@ public class ButtonInitalizer extends Initializer {
 	public void hideField(String state) {
 		String[] states = this.getStringArray(this.name, "hide", 1);
 		if (states != null) {
-			if (Arrays.asList(states).contains(state)) {
-				this.button.setVisible(false);
-			} else {
-				this.button.setVisible(true);
-			}
+			this.button.setVisible(!Arrays.asList(states).contains(state));
 		} else {
 			this.button.setVisible(true);
 		}

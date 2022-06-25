@@ -1,28 +1,15 @@
 package org.fuchss.swt.widgetVisitor.visitors;
 
+import org.eclipse.swt.widgets.*;
+import org.fuchss.swt.widgetVisitor.WidgetVisitor;
+import org.fuchss.swt.widgetVisitor.visitors.initializers.*;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.Text;
-import org.fuchss.swt.widgetVisitor.WidgetVisitor;
-import org.fuchss.swt.widgetVisitor.visitors.initializers.ButtonInitalizer;
-import org.fuchss.swt.widgetVisitor.visitors.initializers.ComboIntializer;
-import org.fuchss.swt.widgetVisitor.visitors.initializers.Initializer;
-import org.fuchss.swt.widgetVisitor.visitors.initializers.LabelInitializer;
-import org.fuchss.swt.widgetVisitor.visitors.initializers.TabItemInitializer;
-import org.fuchss.swt.widgetVisitor.visitors.initializers.TableColumnInitializer;
-import org.fuchss.swt.widgetVisitor.visitors.initializers.TextInitializer;
 
 public class Letterer implements WidgetVisitor {
 
