@@ -1,5 +1,5 @@
 # swt-utils
-![Maven Deploy (Dev)](https://github.com/dfuchss/swt-utils/workflows/Maven%20Deploy%20(Dev)/badge.svg)
+[![Maven Deploy](https://github.com/dfuchss/swt-utils/actions/workflows/deploy.yml/badge.svg)](https://github.com/dfuchss/swt-utils/actions/workflows/deploy.yml)
 [![Latest Release](https://img.shields.io/github/release/dfuchss/swt-utils.svg)](https://github.com/dfuchss/swt-utils/releases/latest)
 [![GitHub issues](https://img.shields.io/github/issues/dfuchss/swt-utils.svg?style=square)](https://github.com/dfuchss/swt-utils/issues)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=square)](https://github.com/dfuchss/swt-utils/blob/master/LICENCE.md)
