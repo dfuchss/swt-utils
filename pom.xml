@@ -30,7 +30,7 @@
         <url>https://github.com/dfuchss/swt-utils/tree/main</url>
     </scm>
     <properties>
-        <swt.version>3.120.0</swt.version>
+        <swt.version>3.121.0</swt.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
