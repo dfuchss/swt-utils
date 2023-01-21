@@ -10,18 +10,11 @@ This project contains a small set of classes that may help to work with SWT
 # Maven & Co.
 If you want to use maven or some similar tool add the following code to your pom:
 ```xml
-<repositories>
-    <repository>
-        <id>maven-snapshots</id>
-        <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-</repositories>
-
 <dependencies>
-<dependency>
-    <groupId>org.fuchss</groupId>
-    <artifactId>swt-utils</artifactId>
-    <version>develop-SNAPSHOT</version>
-</dependency>
+    <dependency>
+        <groupId>org.fuchss</groupId>
+        <artifactId>swt-utils</artifactId>
+        <version>X.Y.Z</version>
+    </dependency>
 </dependencies>
 ```
