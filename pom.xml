@@ -29,7 +29,7 @@
         <tag>v0.6</tag>
     </scm>
     <properties>
-        <swt.version>3.124.0</swt.version>
+        <swt.version>3.124.100</swt.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
